@@ -1,0 +1,100 @@
+Robotic "Assembly.h" Documentation 
+
+Joint, Link, and Base Rules.
+           and
+Naming convention Prototypes.
+
+    |Joint: Takes X and Y coordinates, rotates Link.            ----0----
+    |__ End Effector: A joint combined with an attached Link.   --------EE
+    |__ Base: A joint created that can be fixed statically through a link to another base joint
+    |   |__ Can be attached actively to a link and a joint 
+    |   |__ Can be used as a static reference to an assembly (Such as a leg) and attached to a joint on a different plane
+    |
+    |__ Primary Joint: the joint(s) that attach directly to the Body's base(s)
+
+    |Link: A length of physical mass between a joint.
+    |__Segment: two or more attached in-line links (multiple links combined at different angles can specify independent shapes or masses).
+                Segments are useful for attaching spaced Bases. (Attach.Base(Segment1_2(End)); Segments can be attached either by their additive L1 or L2
+   
+           L1---- + L2-- = 1====S==2   OR   L1(90)-- + L2(90)--- = 1==S===2
+           
+                =='s or --'s represent length units (My preference is Millimeters).
+
+          Flow:
+             L1(0*)---- + L2(90*)-- + L3(180*)---- + L4(270*) = 
+                                                            ____
+                                                           |    |
+                                                           |____| 
+
+                                                           (Note no Bases = not valid for attachment):
+                                                            This may be useful to add defined vestigial connections
+
+
+    Body: Entire XYZ Dimensions of active links and bases combined (No non-basic joints)
+
+    | or L = Link
+        (-=) = Segment
+    + = Base
+        
+    Body is combined static links and bases (Multidimensional Segment with Bases) 
+
+    0 = Joint
+    EE = End Effector
+
+
+
+     _____L______
+    +            +--L---0-----=====EE <--- there is no joint between the end effector and the attached link (Now referred to as a segment)
+    |    Body    |
+    +____________+-----0-----0=====EE <--- Standard Leg implementation
+
+
+ONYX Complete Diagram Example:
+            EE          EE
+            ||    __    ||
+             |   |  |   |                      
+             0__0+__+0__0
+                 _||_
+             __0+_  _+  <-  0__
+             0    \/          0  <-\
+             |                |  <- - "Leg" and Body are two attached assemblies          
+            ||                || <-/
+            EE                EE
+                            
+            
+    Code Flow: Assembly Onyx(){Assemble Body{Assemble Leg1, Assemble Leg2 etc.}};
+        //Create the entire Assembly "Onyx" which contains 1 Body Comprised of 4 Leg Assemblies
+
+         Chassis|_
+                  Body|_
+                        Leg1
+                        Leg2
+                        Leg3
+                        Leg4
+                       
+In the above, we see Onyx has 5 defined Assemblies (1 Body and 4 assemblies defined as "Legs")
+
+The BODY can be commanded to move, requiring the Legs to manipulate it together; the Legs can also move independently of the body
+
+    The EE's switch state between 
+    Static (attached Segment CAN NOT move, slide, or pivot), 
+    Pivotable (Upper Assembly (even entire body) CAN slide or rotate around fixed point), and 
+    Moving (End effector is able to pivot, slide, or raise).
+
+    Each leg has one segment (Segment length is zero if the end effector is AT the last joint)
+  
+
+JOINTS:
+    A joint is a planar rotational axis that acts as a flexible connection between either two links, or a link and a base.
+    Adding two joints without a segment or link to separate them is only possible if the two joint's plane of rotation is different.
+        Only Three joints may be added together: XY XZ YZ The three physical planes of rotation.
+
+LINKS:
+    When a link is attached to another link, their length values are summed and replaced by a single variable (L1 + L2 = Segment1_2; L3+L5 IE:(With 3 connected to 4(90*)) = Segment3_5)
+
+BASE:
+    Bases can either be active or static: Active requires at least one (fixed or pivotable) end effector
+    A Base(s) and a contiguous collection of Links are used to define the main body. Body assemble fails if body is not a polygon (No center of mass; no mass)
+
+End Effector:
+    End Effectors can either be active or static, similar to bases.
