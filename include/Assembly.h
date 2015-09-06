@@ -2,6 +2,7 @@
  * File:   Assembly.h
  * Author: Quinn Mikelson
  * Represents the mechanical and physical constraints of a robot. Includes dynamic calculations.
+ * There is one main assembly called by Assembly "Name" that can assemble(Legs, Arms, Etc.)
  * Created on September 4, 2015, 1:34 PM
  */
 
@@ -12,7 +13,8 @@ class Assembly {
 //    Assembly();
 //    Assembly(const Assembly& orig);
 //    virtual ~Assembly();
-    int _speed;
+    
+    int _speed; //Global Assembly Movement Speed factor
     float _Trochanter_X;
     float _Trochanter_Y;
 
@@ -31,7 +33,7 @@ class Assembly {
 public:
     Assembly();
     
-    bool assemble(); //Attaches joints and binds servos to links. Check rules and allow movement (IE Only one base, one end effector, no joints of sample plane inside eachother)
+    bool assemble(int joints); //Creates and array of #joints and an array of links
     //Creates named class objects to be assembled:
     void Create_Base(); 
     void Create_Joint();
@@ -46,12 +48,21 @@ public:
     void moveFootTo(float x, float y);
     
 };
-
-class Joint {
+class Frame {
     
     
 public:
+    Frame();
+    
+};
+
+
+class Joint {
+int _center;
+int _freedom;    
+public:
     Joint();
+    
 };
 
 class Link {
@@ -59,12 +70,17 @@ class Link {
     
 public:
     Link();
+    void attach()
 };
 class End_Affector {
+    int _linkLength;
+    int _jointFreedom;
+    int _jointCenter;
     
     
 public:
     End_Affector();
+    
 };
 
 #endif	/* ASSEMBLY_H */

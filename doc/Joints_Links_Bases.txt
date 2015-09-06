@@ -46,7 +46,7 @@ Naming convention Prototypes.
      _____L______
     +            +--L---0-----=====EE <--- there is no joint between the end effector and the attached link (Now referred to as a segment)
     |    Body    |
-    +____________+-----0-----0=====EE <--- Standard Leg implementation
+    +____________+0-----0-----0=====EE <--- Standard Leg implementation
 
 
 ONYX Complete Diagram Example:
@@ -57,7 +57,7 @@ ONYX Complete Diagram Example:
                  _||_
              __0+_  _+  <-  0__
              0    \/          0  <-\
-             |                |  <- - "Leg" and Body are two attached assemblies          
+             |                |  <- - "Leg" and Body are two attached assemblies inside one complete containing Robot chassis          
             ||                || <-/
             EE                EE
                             
@@ -98,3 +98,6 @@ BASE:
 
 End Effector:
     End Effectors can either be active or static, similar to bases.
+
+
+This Document is not guaranteed to be free of errors and should only be used as reference.
