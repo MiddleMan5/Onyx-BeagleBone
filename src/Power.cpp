@@ -6,7 +6,6 @@
  */
 
 #include "../include/Power.h"
-
 //Power::Power() {
 //}
 //
@@ -15,9 +14,9 @@
 //
 //Power::~Power() {
 //}
-
+HAL Target;
 Power::Power() {
-
+    
 }
 
 void Power::setMainPin(int pin, bool invert = 0) {
@@ -33,7 +32,7 @@ void Power::ToggleMain(int state) {
         else {
             bool val = state;
             val = _invertMain ? !val : val;
-            BeagleBone.digitalWrite(Main_Relay, val);
+                Target.GPIO(Main_Relay, val);
             _powerMain = state;
         }
     } else return;

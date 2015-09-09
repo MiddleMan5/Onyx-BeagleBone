@@ -15,7 +15,6 @@
 //
 //Host::~Host() {
 //}
-using namespace std;
 
 HAL::HAL() {
 
@@ -35,10 +34,6 @@ void HAL::GPIO(int gpio, bool val) //creates an output StringStream that is pipe
     if (check())system(cstr);
 }
 
-//long HAL::map(long x, long in_min, long in_max, long out_min, long out_max) {
-//    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-//}
-
-bool HAL::check() {
+bool HAL::check(){
     return (system(NULL));
 }

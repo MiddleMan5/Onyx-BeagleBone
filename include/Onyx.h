@@ -30,10 +30,6 @@
 
 //On Off Toggle References
 
-#define OFF     0
-#define ON      1
-#define TOGGLE  2
-
 #define OUTPUT  1
 #define INPUT   0
 
@@ -66,13 +62,15 @@
 #define Y   1
 #define Z   2
 
-#define PI 3.14159265359
+
 
 //Function Definitions
-#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+
 
 //-Extra Includes-
 #include "Assembly.h"
+#include "HAL.h"
+#include "Power.h"
 
 using namespace std;
 

@@ -8,13 +8,12 @@
 #ifndef HAL_H
 #define	HAL_H
 
-#define DEBUG(str) do { std::cout << str << std::endl; } while( false )
+#define debug_out(str) do { std::cout << str << std::endl; } while( false )
 
 
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
-
 using namespace std;
 
 class HAL {

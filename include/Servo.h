@@ -7,10 +7,11 @@
 
 #ifndef SERVO_H
 #define	SERVO_H
-
+//#define map(x, in_min, in_max, out_min, out_max) {(x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min};
 class Servo {
     int _pin;
     int _time;
+    int _posistion;
     bool _isInvert;
     bool _isExternal; //is "on" another controller (the ssc-32 that has a different IO pin name)
     bool _isGroup; //Is the servo part of a group?

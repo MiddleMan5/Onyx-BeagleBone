@@ -10,11 +10,17 @@
 #include "Servo.h"
 
 class Link {
+
+
+
 public:
     Link();
+    float _length;
+    void setLength(float mm);
+    
+    
     Link(const Link& orig);
     virtual ~Link();
-private:
 
 };
 

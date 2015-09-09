@@ -2,13 +2,18 @@
 HAL BeagleBone;
 Power Actuators;
 
+static long map(long x, long in_min, long in_max, long out_min, long out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 Onyx::Onyx() {
-    Assembly Leg[4](2);
+    //Assembly Leg[4](2);
     for(int i=0;i<4;i++){
-        Leg[i].setLinkLength(1,_L1);
-        Leg[i].setLinkLength(2,_L2);
+        //Leg[i].setLinkLength(1,_L1);
+        //Leg[i].setLinkLength(2,_L2);
         
-        Leg[i].setQuadrant(i+1); //Quadrants 1-4
+        //Leg[i].setQuadrant(i+1); //Quadrants 1-4
     }
     
     
@@ -46,7 +51,7 @@ void Onyx::startup() {
 void Onyx::setAttitude(int attitude) {
     _attitude = constrain(attitude, 0, 255);
     for (int i = 0; i < 4; i++) {
-        Legs[i].setSpeed(_attitude);
+        //Legs[i].setSpeed(_attitude);
     }
 
 }
@@ -63,14 +68,14 @@ void Onyx::move(int type) {
     if (type == STAND) {
         moveScope(BODY);
         for (int i = 0; i < 4; i++) {
-            Legs[i].moveFootTo(L1, L2);
+            //Legs[i].moveFootTo(L1, L2);
         }
 
     }
     if (type == SIT) {
         moveScope(BODY);
         for (int i = 0; i < 4; i++) {
-            Legs[i].moveFootTo(114.3, 25.4);
+           // Legs[i].moveFootTo(114.3, 25.4);
         }
     }
 
@@ -92,7 +97,7 @@ void Onyx::rotate(int axis, int degree) {
         _X_rotation = constrain(degree, -45, 45);
 
         for (int i = 0; i < 4; i++) {
-            Legs[i].moveFootTo(L1, L2 + _X_rotation);
+            //Legs[i].moveFootTo(L1, L2 + _X_rotation);
         }
 
 
@@ -112,7 +117,7 @@ void Onyx::rotate(int axis, int degree) {
     if (axis == Z) {
         _Z_rotation = constrain(degree, -45, 45);
         for (int i = 0; i < 4; i++) {
-            Legs[i].rotate(_Z_rotation);
+            //Legs[i].rotate(_Z_rotation);
         }
     }
 

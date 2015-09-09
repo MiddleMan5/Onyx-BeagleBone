@@ -55,8 +55,11 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <commandLine>-std=c++11</commandLine>
+          <commandlineTool>g++</commandlineTool>
         </ccTool>
+        <linkerTool>
+          <commandlineTool>g++</commandlineTool>
+        </linkerTool>
       </compileType>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>

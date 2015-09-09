@@ -10,30 +10,40 @@
 #define	ASSEMBLY_H
 #include <math.h>
 
+
+#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+#define PI 3.14159265359
+
 #include "Link.h"
+#include "Servo.h"
+
+
 
 class Assembly {
 //    Assembly();
 //    Assembly(const Assembly& orig);
 //    virtual ~Assembly();
-    
-    int _numJoints = 2;
-    
-    int _jointMin[_numJoints];
-    int _jointMax[_numJoints];
-    int _jointInv[_numJoints];
-    
+    int _quadrant;
+//    int _numJoints;
+//    int _jointMin[_numJoints];
+//    int _jointMax[_numJoints];
+//    std::vector<int> _jointMin;
+//    std::vector<int> _jointMax;
+//    std::vector<int> _jointInv;
+    int _numLinks;
+     
     bool _eeState; //1 means slave
     bool _baseState; // == !_eeState (eeState is controlled, baseState reacts)
+   
     
-    int _numLinks = 2;
-    int _linkLength[_numLinks];
     
     
 public:
     //Assembly Specific
-    Assembly(int links); //creates leg assembly with 2 joints and two links of length l1 and l2.
-    void setQuadrant(int q); //Chooses which joints in the assembly to invert
+    Assembly(); //creates leg assembly with 2 joints and two links of length l1 and l2.
+    
+    
+    void setQuadrant(int quad); //Chooses which joints in the assembly to invert
     
     
     //Joint Specific
@@ -42,10 +52,10 @@ public:
     
     //Link Specific
     void setLinkLength(int link,int mm);//Set length in millimeters
-    
+    float getLinkLength(int link);
     //End Effector and Base
-    bool eeState(bool eeState); //If eeState = 0, End Effector is now reference (0,0) and base is at target (-X,-Y)
-    void moveTo(int x=_linkLength[0], int y=_linkLength[1]); //Moves Slave(base or EE) to defined (X,Y). Defaults to (L1,L2)
+    void setEEState(bool eeState); //If eeState = 0, End Effector is now reference (0,0) and base is at target (-X,-Y)
+    void moveTo(float x, float y); //Moves Slave(base or EE) to defined (X,Y). Defaults to (L1,L2)
     
 };
 

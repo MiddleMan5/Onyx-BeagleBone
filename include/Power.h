@@ -8,6 +8,12 @@
 #ifndef POWER_H
 #define	POWER_H
 
+#include "Power.h"
+#include "HAL.h"
+#define OFF     0
+#define ON      1
+#define TOGGLE  2
+
 class Power {
     public:
 //    Power();
