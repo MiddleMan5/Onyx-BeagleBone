@@ -9,6 +9,13 @@
 #define	SERVO_H
 
 class Servo {
+    int _pin;
+    int _time;
+    bool _isInvert;
+    bool _isExternal; //is "on" another controller (the ssc-32 that has a different IO pin name)
+    bool _isGroup; //Is the servo part of a group?
+    int _groupNumber;
+    int _position;
 public:
 //    Servo();
 //    Servo(const Servo& orig);
@@ -22,14 +29,7 @@ public:
     void setMin(int Min);
     void invert();
     void setPin(int pin);
-private:
-    int _pin;
-    int _time;
-    bool _isInvert;
-    bool _isExternal; //is "on" another controller (the ssc-32 that has a different IO pin name)
-    bool _isGroup; //Is the servo part of a group?
-    int _groupNumber;
-    int _position;
+    
 };
 
 #endif	/* SERVO_H */

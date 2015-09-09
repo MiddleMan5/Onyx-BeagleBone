@@ -6,6 +6,7 @@
  */
 
 #include "../include/Assembly.h"
+#include "../include/Servo.h"
 
 //Assembly::Assembly() {
 //}
@@ -15,16 +16,23 @@
 //
 //Assembly::~Assembly() {
 //}
-    Servo Coxa;
-    Servo Knee;
-    Servo Ankle;
-Assembly::Assembly() {
+Assembly::Assembly(int links) {
+    Servo Joint[_numJoints];
     
-
-    _L1 = Femur;
-    _L2 = Tibia + Tarsus;
-
+    setLinkLength(1,l1);
+    setLinkLength(2,l2);
+    eeState(0);
 }
+
+void Assembly::setLinkLength(int link, int mm) {
+    _linkLength[link-1] = mm; //Links are 1 Indexed but arrays are Zero indexed. Link 1 = index 0;
+}
+
+void Assembly::eeState(bool eeState){
+    _eeState = eeState;
+    _baseState = !eeState;
+}
+
 void Assembly::rotate(int degree) {
     Coxa.move(degree * 10 + 1500);
 }

@@ -8,78 +8,44 @@
 
 #ifndef ASSEMBLY_H
 #define	ASSEMBLY_H
+#include <math.h>
+
+#include "Link.h"
 
 class Assembly {
 //    Assembly();
 //    Assembly(const Assembly& orig);
 //    virtual ~Assembly();
     
-    int _speed; //Global Assembly Movement Speed factor
-    float _Trochanter_X;
-    float _Trochanter_Y;
-
-    float _Femur_X;
-    float _Femur_Y;
-    float _Femur;
-    float _L1;
-
-    float _Tibia;
-    float _Tarsus;
-    float _L2;
-
-    int _quadrant;
-    bool _isGroup;
+    int _numJoints = 2;
     
-public:
-    Assembly();
+    int _jointMin[_numJoints];
+    int _jointMax[_numJoints];
+    int _jointInv[_numJoints];
     
-    bool assemble(int joints); //Creates and array of #joints and an array of links
-    //Creates named class objects to be assembled:
-    void Create_Base(); 
-    void Create_Joint();
-    void Create_Link();
-    void Create_End_Effector();
-   
-    void rotate(int degree);
-    void setSpeed(int speed);
-    void setMaster();
-    void move(int pulse);
-    void setQuadrant(int index);
-    void moveFootTo(float x, float y);
+    bool _eeState; //1 means slave
+    bool _baseState; // == !_eeState (eeState is controlled, baseState reacts)
     
-};
-class Frame {
+    int _numLinks = 2;
+    int _linkLength[_numLinks];
     
     
 public:
-    Frame();
-    
-};
-
-
-class Joint {
-int _center;
-int _freedom;    
-public:
-    Joint();
-    
-};
-
-class Link {
+    //Assembly Specific
+    Assembly(int links); //creates leg assembly with 2 joints and two links of length l1 and l2.
+    void setQuadrant(int q); //Chooses which joints in the assembly to invert
     
     
-public:
-    Link();
-    void attach()
-};
-class End_Affector {
-    int _linkLength;
-    int _jointFreedom;
-    int _jointCenter;
+    //Joint Specific
+    void limit(int joint, int deg); //limit joint (1 or 2 for now) to a freedom of rotation of min to max (in degrees).
+    void invert(int joint, bool inv); //set invert value (0 = min->max, 1 = max->min)
     
+    //Link Specific
+    void setLinkLength(int link,int mm);//Set length in millimeters
     
-public:
-    End_Affector();
+    //End Effector and Base
+    bool eeState(bool eeState); //If eeState = 0, End Effector is now reference (0,0) and base is at target (-X,-Y)
+    void moveTo(int x=_linkLength[0], int y=_linkLength[1]); //Moves Slave(base or EE) to defined (X,Y). Defaults to (L1,L2)
     
 };
 

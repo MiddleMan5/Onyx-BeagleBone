@@ -1,0 +1,24 @@
+
+        ___________________________________Controller-Host Link__________________________________
+       V                                                                                         V
+Control-HAL --> Program --> Robot --> System --> Power --> Mechanism --> Link --> Actuator --> Host-HAL 
+                                                      |                                        /\ 
+                                                       \_______________________________________/
+
+
+
+
+The program Main.cpp provides entrance into the Robot's controls and various defined functions. 
+Main.cpp defines runtime operations and State control. The Program takes arguments from a separate Control-HAL (Hardware Abstraction Layer)
+    
+    The robot only provides the ability to walk, the program decides when to stop a walk and when to start one.
+    The Program provides movement and data-collection parameters, the Control-HAL then translates input from the Host-HAL to instruct the program.
+
+The Robot creates a System containing one or more mechanisms and their various controllers. These can be switched by a power controller (Note: Systems aren't required to have power controllers)
+Power controllers access the Host-HAL directly (Usually as a call to GPIO(Pin, State);)
+
+If a power controller is on, then system commands are passed transparently to the Mechanism. The Mechanism commands Links to perform various actions with there subservient actuators.
+
+These Actuators directly control the Host-HAL which provides a feedback to the Control HAL.
+
+OMFG WHY IS THIS SO HARD!!!?

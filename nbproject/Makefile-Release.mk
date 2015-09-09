@@ -37,7 +37,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/src/Assembly.o \
-	${OBJECTDIR}/src/Host.o \
+	${OBJECTDIR}/src/HAL.o \
+	${OBJECTDIR}/src/Link.o \
 	${OBJECTDIR}/src/Onyx.o \
 	${OBJECTDIR}/src/Power.o \
 	${OBJECTDIR}/src/Servo.o
@@ -77,10 +78,15 @@ ${OBJECTDIR}/src/Assembly.o: src/Assembly.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Assembly.o src/Assembly.cpp
 
-${OBJECTDIR}/src/Host.o: src/Host.cpp 
+${OBJECTDIR}/src/HAL.o: src/HAL.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Host.o src/Host.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/HAL.o src/HAL.cpp
+
+${OBJECTDIR}/src/Link.o: src/Link.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Link.o src/Link.cpp
 
 ${OBJECTDIR}/src/Onyx.o: src/Onyx.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

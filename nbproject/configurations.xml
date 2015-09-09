@@ -5,7 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>include/Assembly.h</itemPath>
-      <itemPath>include/Host.h</itemPath>
+      <itemPath>include/HAL.h</itemPath>
+      <itemPath>include/Link.h</itemPath>
       <itemPath>include/Onyx.h</itemPath>
       <itemPath>include/Power.h</itemPath>
       <itemPath>include/Servo.h</itemPath>
@@ -14,13 +15,15 @@
                    displayName="Resource Files"
                    projectFiles="true">
       <itemPath>doc/Joints_Links_Bases.txt</itemPath>
+      <itemPath>doc/Software_Architecture.txt</itemPath>
       <itemPath>doc/reference.txt</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>src/Assembly.cpp</itemPath>
-      <itemPath>src/Host.cpp</itemPath>
+      <itemPath>src/HAL.cpp</itemPath>
+      <itemPath>src/Link.cpp</itemPath>
       <itemPath>Main.cpp</itemPath>
       <itemPath>src/Onyx.cpp</itemPath>
       <itemPath>src/Power.cpp</itemPath>
@@ -51,16 +54,23 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <commandLine>-std=c++11</commandLine>
+        </ccTool>
       </compileType>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="doc/Joints_Links_Bases.txt" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="doc/Software_Architecture.txt" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="doc/reference.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Assembly.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/Host.h" ex="false" tool="3" flavor2="0">
+      <item path="include/HAL.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Link.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Onyx.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -70,7 +80,9 @@
       </item>
       <item path="src/Assembly.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/Host.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/HAL.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Link.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Onyx.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -103,11 +115,15 @@
       </item>
       <item path="doc/Joints_Links_Bases.txt" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="doc/Software_Architecture.txt" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="doc/reference.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Assembly.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="include/Host.h" ex="false" tool="3" flavor2="0">
+      <item path="include/HAL.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/Link.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/Onyx.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -117,7 +133,9 @@
       </item>
       <item path="src/Assembly.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/Host.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/HAL.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Link.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Onyx.cpp" ex="false" tool="1" flavor2="0">
       </item>

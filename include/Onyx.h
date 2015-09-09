@@ -14,11 +14,11 @@
 #define Femur_X 24.29 
 #define Femur_Y 50.78 
 #define Femur   56.29 //The L1 Value
-#define L1 56.29
+#define _L1 56.29
 
 #define Tibia 41.02
 #define Tarsus 62.00 //Tibia + Tarsus = L2 Value
-#define L2 103.02
+#define _L2 103.02
 
 #define Body_Width 139.72
 #define Body_Length 106.25
@@ -72,16 +72,7 @@
 #define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 //-Extra Includes-
-#include <math.h>
-#include <iostream>
-#include <stdlib.h>
-#include <sstream>
 #include "Assembly.h"
-#include "Host.h"
-#include "Power.h"
-#include "Servo.h"
-
-
 
 using namespace std;
 
@@ -95,6 +86,26 @@ private:
 
 public:
     Onyx();
+    void Stop(); //Stops mid pose
+    void Walk(int dir); //Keeps face forward, walks back, forward, sidestep left, sidestep right.
+    void Step(int leg,int dir, int distance); //IE: Leg1, forward, 3mm (Arc with diameter 3mm)
+    void Rotate(int axis, int deg); //X Front to Back, Y Side to Side, Z Turn
+    void Turn(int deg);//90Right -90Left. Deg can be grater than 360 and less than -360 (be careful)  
+        
+    void homeLeg(int leg); //Move leg# to predefined home
+    void moveLeg(int dir); //Up Down Left Right Forward Backward 
+    void moveLegTo(int leg, int x, int y, int z); 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     void startup();
     void setAttitude(int attitude); //Current servo "Speed Control" - Prototypical function
     void setMode(int mode); //sets runtime state
@@ -107,5 +118,6 @@ public:
     void rotate(int axis, int degree);
     void Log();
 };
+
 
 #endif

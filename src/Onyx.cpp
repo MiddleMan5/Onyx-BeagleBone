@@ -1,16 +1,23 @@
 #include "../include/Onyx.h"
-Host BeagleBone;
-Assembly Legs[4];
+HAL BeagleBone;
 Power Actuators;
 
 Onyx::Onyx() {
+    Assembly Leg[4](2);
+    for(int i=0;i<4;i++){
+        Leg[i].setLinkLength(1,_L1);
+        Leg[i].setLinkLength(2,_L2);
+        
+        Leg[i].setQuadrant(i+1); //Quadrants 1-4
+    }
+    
+    
+    
     Actuators.setMainPin(relayServos, true);
     Actuators.ToggleMain(OFF);
     setAttitude(200);
     setMode(LOWPOWER);
-    for (int i = 0; i < 4; i++) {
-        Legs[i].setQuadrant(i);
-    }
+    
 }
 
 void Onyx::setMode(int mode) {
