@@ -10,6 +10,7 @@ Onyx MK1; //Initialize Onyx Class
 int Main() {
     MK1.setMode(STARTUP);
     MK1.setMode(STANDBY);
+    
     return 0;
 }
 

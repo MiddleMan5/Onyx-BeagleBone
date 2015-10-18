@@ -55,10 +55,10 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <commandlineTool>g++</commandlineTool>
+          <commandlineTool>arm-linux-gnueabihf-g++</commandlineTool>
         </ccTool>
         <linkerTool>
-          <commandlineTool>g++</commandlineTool>
+          <commandlineTool>arm-linux-gnueabihf-g++</commandlineTool>
         </linkerTool>
       </compileType>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
