@@ -3,7 +3,7 @@
  * Author: Quinn Mikelson
  * Represents the mechanical and physical constraints of a robot. Includes dynamic calculations.
  * There is one main assembly called by Assembly "Name" that can assemble(Legs, Arms, Etc.)
- * Created on September 4, 2015, 1:34 PM
+ * Created on September 4, 2015, 1:34 PM 
  */
 
 #ifndef ASSEMBLY_H
